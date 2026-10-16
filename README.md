@@ -21,3 +21,17 @@ different screen sizes.
 - <br/>
 - Hover effects and visual improvements for better usability
 
+
+
+> JavaScript Functionality
+ The JavaScript handles the logic and interactivity of the Expense Calculator. It manages transactions, calculates financial summaries, and dynamically updates the dashboard
+
+**Key features:
+
+- Adds and manages income and expense transactions
+- Calculates total income, expenses, balance, and savings rate
+- Provides transaction search and category filtering
+- Stores transaction data using Local Storage
+- Generates category-wise spending and cash-flow statistics
+- Dynamically updates the transaction list and dashboard
+- Validates user inputs and formats dates and currency
