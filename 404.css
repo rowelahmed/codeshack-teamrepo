@@ -1,0 +1,15 @@
+body { 
+  font-family: Inter, system-ui, -apple-system, sans-serif; 
+  background: #151a26; 
+  color: #eef1f8; 
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+  height: 100vh; 
+  margin: 0; 
+  text-align: center; 
+}
+.error-container h1 { font-size: 72px; color: #a193fd; margin: 0 0 10px; font-weight: 700; }
+.error-container p { color: #9da5b7; margin-bottom: 30px; font-size: 14px; }
+.home-btn { color: #fff; background: #8f84ec; padding: 10px 20px; text-decoration: none; border-radius: 7px; font-weight: 600; font-size: 14px; }
+.home-btn:hover { background: #9f96f3; }
