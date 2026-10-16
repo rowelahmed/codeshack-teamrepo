@@ -36,7 +36,3 @@ JavaScript Functionality
 - Generates category-wise spending and cash-flow statistics
 - Dynamically updates the transaction list and dashboard
 - Validates user inputs and formats dates and currency
-
-
-
-- Includes a custom 404 error page for broken links
