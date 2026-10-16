@@ -23,7 +23,8 @@ different screen sizes.
 
 
 
-> JavaScript Functionality
+JavaScript Functionality
+
  The JavaScript handles the logic and interactivity of the Expense Calculator. It manages transactions, calculates financial summaries, and dynamically updates the dashboard
 
 **Key features:
