@@ -1,0 +1,208 @@
+html: 
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Overview | Ledger — Expense Tracker</title>
+  <link rel="stylesheet" href="styles.css">
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#overview">◈ ledger<span>.</span></a>
+      <p class="side-label">WORKSPACE</p>
+      <nav>
+        <a class="nav-link active" href="#overview">▦ &nbsp; Overview</a>
+        <a class="nav-link" href="#transactions">▤ &nbsp; Transactions</a>
+        <a class="nav-link" href="#analytics">▥ &nbsp; Analytics</a>
+        <a class="nav-link" href="#categories">◉ &nbsp; Categories</a>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="tip">
+          <strong>✦ Small habits make a big difference.</strong>
+          <span id="tip-savings">You’re saving 0% this month.</span>
+        </div>
+        <div class="profile">
+          <span class="avatar">M</span>
+          <span>Morgan Lee<small>Personal account</small></span>
+        </div>
+      </div>
+    </aside>
+
+    <main class="main" id="overview">
+      <header class="topbar">
+        <div class="crumb">Workspace <span>/</span> <strong>Overview</strong></div>
+        <div class="top-actions">
+          <span class="date-chip">▦ &nbsp; October 2026</span>
+          <button class="primary" id="open-dialog">＋ Add transaction</button>
+        </div>
+      </header>
+
+      <div class="content">
+        <section class="page-heading">
+          <div>
+            <p class="eyebrow" id="today-label"></p>
+            <h1>Your money, in focus.</h1>
+            <p class="subtitle">A little clarity goes a long way. Here’s your October at a glance.</p>
+          </div>
+          <div class="date-stamp">
+            <span>OCT</span>
+            <strong>15</strong>
+            <span>2026</span>
+          </div>
+        </section>
+
+        <!-- Summary Cards -->
+        <section class="metrics" aria-label="Monthly financial summary">
+          <article class="metric balance">
+            <div class="metric-top">Available balance <span class="metric-icon">◈</span></div>
+            <strong id="balance">—</strong>
+            <small><b id="saving-rate">0%</b> of income saved</small>
+          </article>
+          <article class="metric">
+            <div class="metric-top">Total income <span class="metric-icon green">↙</span></div>
+            <strong id="income">—</strong>
+            <small>October monthly total</small>
+          </article>
+          <article class="metric">
+            <div class="metric-top">Total expenses <span class="metric-icon orange">↗</span></div>
+            <strong id="expenses">—</strong>
+            <small><b id="expense-share">0%</b> of monthly income</small>
+          </article>
+          <article class="metric">
+            <div class="metric-top">Savings rate <span class="metric-icon purple">✦</span></div>
+            <strong><span id="saving-rate-large">0</span><em>%</em></strong>
+            <div class="progress"><span id="saving-progress"></span></div>
+            <small>Keep it up this month</small>
+          </article>
+        </section>
+
+        <!-- Charts -->
+        <section class="charts" id="analytics">
+          <article class="panel cashflow">
+            <div class="panel-heading">
+              <div>
+                <h2>Cash flow</h2>
+                <p>Income and expenses over time</p>
+              </div>
+              <span class="muted-pill">Last 6 months</span>
+            </div>
+            <div class="chart-legend">
+              <span><i class="dot green-bg"></i>Income</span>
+              <span><i class="dot orange-bg"></i>Expenses</span>
+            </div>
+            <div class="bars" id="cashflow-bars"></div>
+            <div class="month-labels">
+              <span>May</span><span>Jun</span><span>Jul</span><span>Aug</span><span>Sep</span><span>Oct</span>
+            </div>
+          </article>
+
+          <article class="panel" id="categories">
+            <div class="panel-heading">
+              <div>
+                <h2>Spending by category</h2>
+                <p>Where your money went</p>
+              </div>
+            </div>
+            <div id="category-breakdown" class="category-breakdown"></div>
+          </article>
+        </section>
+
+        <!-- Transactions Table -->
+        <section class="panel transactions" id="transactions">
+          <div class="transaction-heading">
+            <div>
+              <div class="title-count">
+                <h2>Recent transactions</h2>
+                <span id="transaction-count">0</span>
+              </div>
+              <p>Your latest activity across accounts</p>
+            </div>
+            <div class="tools">
+              <label class="search">
+                ⌕ <input id="search" type="search" placeholder="Search transactions">
+              </label>
+            </div>
+          </div>
+
+          <div class="filters" id="filters"></div>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>TRANSACTION</th>
+                  <th>CATEGORY</th>
+                  <th>DATE</th>
+                  <th>PAYMENT METHOD</th>
+                  <th class="right">AMOUNT</th>
+                </tr>
+              </thead>
+              <tbody id="transaction-rows"></tbody>
+            </table>
+          </div>
+
+          <div class="table-footer">
+            <span id="showing-count"></span>
+            <button class="text-button" id="clear-filters">Clear filters</button>
+          </div>
+        </section>
+
+        <footer class="footer">
+          <span><i class="status-dot"></i>All accounts up to date</span>
+          <span>Last synced just now</span>
+        </footer>
+      </div>
+    </main>
+  </div>
+
+  <!-- Modal Dialog -->
+  <dialog id="transaction-dialog">
+    <form id="transaction-form" method="dialog">
+      <div class="dialog-top">
+        <div>
+          <h2>Add transaction</h2>
+          <p>Keep track of money moving in and out.</p>
+        </div>
+        <button type="button" class="close" id="close-dialog">×</button>
+      </div>
+
+      <div class="type-toggle">
+        <button type="button" class="selected" data-type="expense">↗ Expense</button>
+        <button type="button" data-type="income">↙ Income</button>
+      </div>
+
+      <label>Description
+        <input name="name" placeholder="e.g. Grocery shopping" maxlength="64" required>
+      </label>
+
+      <label>Amount (SEK)
+        <input name="amount" type="number" min="0.01" step="0.01" placeholder="0.00" required>
+      </label>
+
+      <label id="category-field">Category
+        <select name="category">
+          <option>Groceries</option>
+          <option>Dining</option>
+          <option>Transport</option>
+          <option>Shopping</option>
+          <option>Housing</option>
+          <option>Health</option>
+          <option>Subscriptions</option>
+        </select>
+      </label>
+
+      <label>Date
+        <input name="date" type="date" required>
+      </label>
+
+      <div class="dialog-actions">
+        <button type="button" class="secondary" id="cancel-dialog">Cancel</button>
+        <button type="submit" class="primary">＋ Save transaction</button>
+      </div>
+    </form>
+  </dialog>
+</body>
+</html>
